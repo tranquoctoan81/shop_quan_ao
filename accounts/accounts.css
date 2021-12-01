@@ -1,0 +1,99 @@
+*{
+    padding: 0;margin: 0;box-sizing: border-box;
+}
+#accounts_container{
+    width: 1200px;
+    margin: 2rem auto;
+}
+#header_acc{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 4rem;
+    background-color: #eee;
+    padding-left: 1rem;
+}
+#header_acc .space{
+    padding:0 .2rem;
+}
+#header_acc a, #header_acc p{
+    font-size:1.2rem;
+    color: #000;
+    font-weight:500;
+    text-decoration: none;
+}
+.account_content{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top:2rem;
+}
+.account_content .login_regiser,
+.account_content .login_wrapper{
+    width: 46%;
+}
+.account_content .login_wrapper .option_login{
+    display: flex;
+    flex-direction: column;
+    border: .1rem solid #000;
+    display: inline-block;
+    padding: 1rem;
+    background-color: rgba(233, 230, 230, 0.815);
+}
+.account_content .login_wrapper .option_login h4{
+    margin-bottom: .6rem;
+}
+.account_content .login_wrapper .option_login a{
+    display: block;
+    color: #000;
+    text-decoration: none;
+    font-size: 1rem;
+}
+.accounts_title{
+    font-size: 1.7rem;
+    font-weight: bold;
+    padding: 1rem 0;
+    color: rgb(75, 75, 75);
+}
+.form_login{
+    border: .1rem solid rgba(102, 102, 102, 0.418);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius:.5rem;
+}
+.form_login label{
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+.form_login input{
+    background-color: #eee;
+    padding: 0.6rem;
+    margin-bottom: 0.5rem;
+    outline: none;
+    border: none;
+    border-radius:.5rem;
+}
+.onSubmitLogin{
+    font-size: 1.2rem;
+    margin-top: .5rem;
+    font-weight: bold;
+    color: #515151;
+    cursor: pointer;
+}
+.onSubmitLogin:hover{
+    background-color: #9c9b9b;
+}
+.submit_form a{
+    color: #000;
+    text-decoration: none;
+    margin-left: .5rem;
+}
+.register_desc{
+    margin: 0 0 10px 0;
+    line-height: 21px;
+    font-weight: 400;
+    font-size:1.1rem;
+}

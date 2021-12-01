@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Birthstone+Bounce&family=Monsieur+La+Doulaise&family=Pinyon+Script&family=Roboto:wght@300;400;500;700&family=UnifrakturMaguntia&display=swap');
+*{
+    padding: 0;margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    list-style: none;
+}
+.clearfix:after, .clearfix:before {
+    content: ".";
+    clear: both;
+    display: table;
+}
+#container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#header{
+    width: 100%;
+    margin: 0 auto;
+}
+.header_option{
+    padding: 1rem 3rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_option .logo a{
+    font-size:1.7rem;
+    color: #000;
+    font-weight: 500;
+}
+
+.icon_search_input{
+    position: absolute;
+    font-size:1.2rem;
+    top: 50%;
+    right: 3%;
+    transform: translate(-50%,-50%);
+    color:#999;
+    cursor: pointer;
+}
+
+.search_input{
+    width: 60%;
+    position: relative;
+}
+.search_input input{
+    background-color: #f5f5f5;
+    width: 100%;
+    padding: 1rem;
+    font-size:1rem;
+    color: #999;
+    border-radius:.1rem;
+    border: none;
+    outline: none;
+}
+
+.header_wrap_icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12%;
+}
+
+.header_wrap_icon .wrap_icon_item{
+    font-size:1.4rem;
+    padding: 0 .3rem;
+    cursor: pointer;
+}
+.menu-container{
+    width: 100%;
+    border-top: .1rem solid #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu-container>li:hover > .sub_menu{
+    transform: scale(1);
+    opacity:1
+}
+.menu-container>li:hover{
+    color: red;
+    border-bottom: .2rem solid red;
+}
+.menu-container>li>a{
+    padding:1rem .5rem;
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0 1.5rem 0 0;
+    position: relative;
+    color: rgb(59, 59, 59);
+}
+.sub_menu{
+    position: absolute;
+    cursor: pointer;
+    z-index: 999;
+    transition: all 0.2s ease-in-out;
+        transform: scale(0);
+        opacity:0;
+    /* clip-path: polygon(0 0, 100% 0, 100% 0, 0 0) */
+}
+.sub-menu-collection,
+.sub-menu-sale{
+    background-color: #fff;
+    width: 10%;
+}
+.sub-menu-collection a,
+.sub-menu-sale a{
+    color: #000;
+    display: block;
+    font-size:1rem;
+    padding: .7rem;
+    border-bottom: 1px solid rgba(153, 153, 153, 0.342);
+}
+.sub-menu-product{
+    background-color:#fff;
+    width: 100vh;
+    display: flex;
+}
+.sub-menu-product .sub-menu-item{
+    width: calc(100% / 4);
+    margin-right: .5rem;
+}
+.sub-menu-product .sub-menu-item h1{
+    font-size:1rem;
+    padding: 1rem;
+    border-bottom: .1rem solid #999;
+}
+.sub-menu-product .sub-menu-item li{
+    padding:.4rem 1rem;
+    color: #000;
+}
+.sub-menu-product .sub-menu-item li a{
+    color: #000;
+}
+.sub-menu-product .sub-menu-item li:hover{
+    color: rgba(0, 0, 0, 0.555);
+}
+.sub_menu img{
+    width: 100%;object-fit: cover;
+}
+#content .slide-show{
+    width: 100%;height:100vh;
+}
+#content .slide-show img{
+    width: 100%;height: 100%;object-fit: cover;
+}
+.header-product-title{
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 400;
+    display:block;
+    text-align: center;
+    padding: 3rem 0;
+}
+.news_container,
+.new_product,
+.hot_product{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.hot_product_container{
+    --spacing:1.5rem;
+    --columns:4;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(-1 * var(--spacing));
+}
+.image_hot_product{
+    width: calc(calc(100% / var(--columns)) - var(--spacing));
+    margin-left: var(--spacing);
+    margin-bottom: var(--spacing);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.image_hot_product img{
+    width: 100%;height: 100%;object-fit: cover;
+}
+.image_hot_product .product-detail{
+    padding:1.3rem 0;
+    position:absolute;
+    bottom: -100%;
+    width: 100%;
+    text-align: center;
+    background-color:#fff;
+    opacity:.7;
+    transition:all .4s ease-in-out; 
+}
+.image_hot_product:hover .product-detail{
+    bottom: 0;
+    opacity:1;
+}
+.image_hot_product .product-detail .product-price{
+    color: red;
+}
+
+.news-wrapper{
+
+}
