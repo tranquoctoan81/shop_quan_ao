@@ -84,3 +84,8 @@
         </div>
     </div>
 </div>
+<style>
+.product-name {
+    color: #000;
+}
+</style>
