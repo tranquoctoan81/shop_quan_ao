@@ -24,7 +24,9 @@ require './functions/index_funs.php';
         <!-- require content -->
         <?php require_once './blocks/content.php'; ?>
         <!-- require content end-->
-        <div id="footer"></div>
+        <!-- require footer -->
+        <?php require_once './blocks/footer.php'; ?>
+        <!-- require footer end-->
     </div>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>

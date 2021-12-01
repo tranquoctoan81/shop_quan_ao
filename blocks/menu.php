@@ -12,7 +12,7 @@
             </form>
         </div>
         <div class="header_wrap_icon">
-            <a style="color:#000;" href="http://localhost/shop_quan_ao/accounts/accounts.php"
+            <a style="color:#000;" href="http://localhost/shop_quan_ao/accounts/accounts.php?redirect_account=order"
                 class="wrap_icon_item user_icon">
                 <i class="fas fa-user-circle"></i>
             </a>
@@ -35,6 +35,19 @@
             </div>
         </div>
     </div>
+    <div class="dropdown_cart_right">
+        <div class="cart_top">
+            <h6>Giỏ hàng</h6>
+            <div class="icon_times">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="cart_content">
+
+        </div>
+        <div class="cart_footer"></div>
+    </div>
+
     <ul class="menu-container">
         <li><a href="">Sale Black FriDay</a>
             <div class="sub_menu">
@@ -99,7 +112,40 @@
     position: relative;
 }
 
-.quantity_order {
+.dropdown_cart_right {
+    padding: 4rem;
+    position: absolute;
+    right: 0;
+    width: 25%;
+    height: 100vh;
+    background-color: red;
+    top: 0;
+    z-index: 100;
+}
+
+.dropdown_cart_right.active {
+    right: -30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.cart_top h6 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.cart_top .icon_times {
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
+.cart_top .dropdown_cart_right .quantity_order {
     position: absolute;
     top: -50%;
     right: -4%;
