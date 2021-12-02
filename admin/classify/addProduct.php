@@ -1,6 +1,6 @@
 <form action="" method="post" class="product-manager" enctype="multipart/form-data">
-    Tên sản phẩm: <input type="text" name="name">
-    Nhóm sảm phẩm: <select name="group">
+    Tên sản phẩm: <input class="name" type="text" name="name">
+    Nhóm sảm phẩm: <select class="group" name="group">
         <?php
         $resu = selectGroupName($connect);
         while ($kq1 = mysqli_fetch_array($resu)) {
@@ -23,7 +23,7 @@
         ?>
     </select>
     Giá: <input type="text" name="price">
-    Màu sắc: <select name="color">
+    Màu sắc: <select class="color" name="color">
         <option value="Trắng">Trắng</option>
         <option value="Xanh">Xanh</option>
         <option value="Đỏ">Đỏ</option>
@@ -31,10 +31,10 @@
         <option value="Đen">Đen</option>
     </select>
 
-    Size: <input type="text" name="size">
-    Hình ảnh: <input type="file" name="image">
-    Mô tả: <input type="text" name="detail">
-    <button type="submit" name="add_shirt">Thêm sản phẩm</button>
+    Size: <input class="size" type="text" name="size">
+    Hình ảnh: <input class="image" type="file" name="image">
+    Mô tả: <input class="detail" type="text" name="detail">
+    <button class="add_shirt" type="submit" name="add_shirt">Thêm sản phẩm</button>
 </form>
 <?php
 if (isset($_POST['add_shirt'])) {
@@ -77,3 +77,6 @@ alert('Upload không thành công')
                 }
             }
                     ?>
+<style>
+.product-manager {}
+</style>

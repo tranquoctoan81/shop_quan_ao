@@ -1,8 +1,8 @@
 <form action="" method="post" enctype="multipart/form-data">
-    Hình ảnh: <input type="file" name="image">
-    Tiêu đề: <input type="text" name="title">
-    Mô tả tin tức: <textarea name="desc" rows="" cols=""></textarea>
-    <button type="submit" name="add_news">Thêm tin tức</button>
+    Hình ảnh: <input class="image" type="file" name="image">
+    Tiêu đề: <input class="title" type="text" name="title">
+    Mô tả tin tức: <textarea class="desc" name="desc" rows="" cols=""></textarea>
+    <button type="submit" class="add_news" name="add_news">Thêm tin tức</button>
 </form>
 <?php
 if (isset($_POST['add_news'])) {
@@ -26,3 +26,6 @@ alert('Upload không thành công')
                 }
             }
                     ?>
+<style>
+
+</style>
