@@ -59,3 +59,8 @@ function searchProduct($name, $connect)
     $select = "SELECT sanpham.* From sanpham WHERE sanpham.tensanpham LIKE '%$name%'";
     return mysqli_query($connect, $select);
 }
+function addInfoCustomer($name, $new_address, $phone_number, $account, $connect)
+{
+    $select = "INSERT INTO `khachhang`(`makhachhang`, `tenkhachhang`, `diachi`, `sdt`, `taikhoan`) VALUES ('','$name','$new_address','$phone_number','$account')";
+    return mysqli_query($connect, $select);
+}

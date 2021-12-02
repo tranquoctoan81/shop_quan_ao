@@ -1,6 +1,13 @@
 <?php
 require '../model/connect.php';
 require '../functions/admin_funs.php';
+session_start();
+$user =  $_SESSION['username'];
+$resultAccount = login($user, $connect);
+$id = mysqli_fetch_array($resultAccount);
+if ($id['quyen'] == 0) {
+    header('Location: ../index.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

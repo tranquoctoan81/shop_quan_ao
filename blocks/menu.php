@@ -35,17 +35,58 @@
             </div>
         </div>
     </div>
+
+    <?php
+    function showCart()
+    {
+        if (count($_SESSION['cart']) === 0) {
+            echo '<h1 style="text-align:center">Bạn chưa thêm sản phẩm nào</h1>';
+        } elseif (isset($_SESSION['cart'])) {
+            if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
+                $session_cart = $_SESSION['cart'];
+                $sumAllProducts = 0;
+                foreach ($session_cart as $key) {
+                    $sum = ($key[3] * $key[4]);
+                    $sumAllProducts += $sum;
+                    echo '
+                    <div class="cart_content">
+                    <div class="cart_content_detail">
+                        <a href="">' . $key[0] . '</a>
+                        <div class="cart_content_detail_quantity">
+                            <p>' . $key[3] . '</p>
+                            <p>' . $key[4] . '₫</p>
+                        </div>
+                    </div>
+                    <div class="icon_times">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                    ';
+                }
+                echo '
+                <div class="cart_footer">
+                <div class="cart_sum_price">
+                    <h3>TỔNG TIỀN:</h3>
+                    <p>' . $sumAllProducts . '₫</p>
+                </div>
+                <div class="cart_buy">
+                    <a href="http://localhost/shop_quan_ao/accounts/accounts.php?redirect_account=addToCart">XEM GIỎ HÀNG</a>
+                    <a href="">THANH TOÁN</a>
+                </div>
+            </div>
+                ';
+            }
+        }
+    }
+    ?>
     <div class="dropdown_cart_right">
         <div class="cart_top">
             <h6>Giỏ hàng</h6>
-            <div class="icon_times">
+            <div class="icon_times icon_close_dropdown_right">
                 <i class="fas fa-times"></i>
             </div>
         </div>
-        <div class="cart_content">
-
-        </div>
-        <div class="cart_footer"></div>
+        <?php showCart(); ?>
     </div>
 
     <ul class="menu-container">
@@ -107,6 +148,20 @@
         <li><a href="">Hệ Thống Cửa Hàng</a> </li>
     </ul>
 </div>
+<script>
+const dropdown_cart_right = document.querySelector('.dropdown_cart_right');
+const iconClose = document.querySelector('.icon_close_dropdown_right');
+const cart_icon = document.querySelector('.cart_icon');
+cart_icon.onclick = () => {
+    dropdown_cart_right.classList.add('active')
+}
+iconClose.onclick = () => {
+    dropdown_cart_right.classList.remove('active')
+}
+window.onscroll = () => {
+    dropdown_cart_right.classList.remove('active')
+}
+</script>
 <style>
 .cart_icon {
     position: relative;
@@ -115,16 +170,21 @@
 .dropdown_cart_right {
     padding: 4rem;
     position: absolute;
-    right: 0;
     width: 25%;
     height: 100vh;
-    background-color: red;
+    background-color: #fff;
     top: 0;
     z-index: 100;
+    right: -30%;
+    opacity: 1;
+    transform: scale(.2);
+    transition: all 1.2s cubic-bezier(1, -0.79, 0, 1.99);
 }
 
 .dropdown_cart_right.active {
-    right: -30%;
+    right: 0;
+    transform: scale(1);
+    opacity: 1;
     display: flex;
     flex-direction: column;
 }
@@ -132,20 +192,29 @@
 .cart_top {
     display: flex;
     justify-content: space-between;
-    align-items: center
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
 .cart_top h6 {
     font-size: 1.5rem;
     font-weight: 500;
+    color: rgb(75, 75, 75);
+    ;
 }
+
 
 .cart_top .icon_times {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 500;
+    cursor: pointer;
 }
 
-.cart_top .dropdown_cart_right .quantity_order {
+.cart_top .icon_times:hover {
+    opacity: .5;
+}
+
+.quantity_order {
     position: absolute;
     top: -50%;
     right: -4%;
@@ -163,5 +232,77 @@
     text-transform: uppercase;
     display: inline-block;
     margin-right: .3rem;
+}
+
+.dropdown_cart_right .cart_content {
+    padding: 2rem 0.5rem 1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.dropdown_cart_right .cart_content a {
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: rgb(75, 75, 75);
+    display: inline-block;
+}
+
+.dropdown_cart_right .cart_content .cart_content_detail_quantity {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown_cart_right .cart_content .cart_content_detail_quantity p:first-child {
+    padding: .2rem .6rem;
+    border: .1rem solid #000;
+    margin-right: .5rem;
+    background-color: #ededed;
+}
+
+.cart_footer {
+    border-top: .2rem solid #000;
+    padding: 1rem 0;
+}
+
+.cart_sum_price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart_sum_price h3 {
+    font-weight: 400;
+    color: rgb(75, 75, 75);
+}
+
+.cart_buy {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart_buy a {
+    text-align: center;
+    width: 47%;
+    padding: 1rem .5rem;
+    border: .1rem solid #ccc;
+    font-size: .8rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    background-color: #000;
+    color: #fff;
+}
+
+
+.cart_buy a:hover {
+    background-color: #eee;
+    color: #000;
+}
+
+.icon_times {
+    cursor: pointer;
 }
 </style>
