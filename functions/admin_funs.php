@@ -29,3 +29,49 @@ function login($account, $connect)
     $sql = "SELECT taikhoan.* FROM taikhoan WHERE taikhoan.taikhoan = '$account'";
     return mysqli_query($connect, $sql);
 }
+function selectAllProducts($connect)
+{
+    $sql = "SELECT sanpham.*, loaisanpham.tenloai as tenloai, nhomsanpham.tennhom as tennhom FROM sanpham LEFT JOIN loaisanpham ON loaisanpham.maloai = sanpham.maloai LEFT JOIN nhomsanpham ON nhomsanpham.manhom = loaisanpham.manhom ORDER BY sanpham.create_update ASC";
+    return mysqli_query($connect, $sql);
+}
+function selectNewss($connect)
+{
+    $select = "SELECT tintuc.* FROM tintuc";
+    return mysqli_query($connect, $select);
+}
+function deleteProduct($id, $connect)
+{
+    $select = "DELETE FROM `sanpham` WHERE sanpham.masanpham = {$id}";
+    return mysqli_query($connect, $select);
+}
+
+function updateProduct($id, $name, $price, $color, $detail, $connect)
+{
+    $select = "UPDATE `sanpham` SET `tensanpham`='$name',`gia`='$price',`mausac`='$color',`mota`='$detail' WHERE sanpham.masanpham  = '$id'";
+    return mysqli_query($connect, $select);
+}
+function selectProductsItems($id, $connect)
+{
+    $select = "SELECT sanpham.* FROM sanpham WHERE sanpham.masanpham =  {$id}";
+    return mysqli_query($connect, $select);
+}
+function selectIdNewss($id, $connect)
+{
+    $select = "SELECT tintuc.* FROM tintuc WHERE tintuc.matin = {$id}";
+    return mysqli_query($connect, $select);
+}
+function updateNews($id, $title, $detail, $connect)
+{
+    $select = "UPDATE `tintuc` SET `tieude`='$title',`chitiettin`='$detail' WHERE tintuc.matin   = '$id'";
+    return mysqli_query($connect, $select);
+}
+function deleteNews($id, $connect)
+{
+    $select = "DELETE FROM `tintuc` WHERE tintuc.matin  = {$id}";
+    return mysqli_query($connect, $select);
+}
+function selectAccount($connect)
+{
+    $select = "SELECT taikhoan.* FROM taikhoan ORDER BY taikhoan.create_date DESC";
+    return mysqli_query($connect, $select);
+}

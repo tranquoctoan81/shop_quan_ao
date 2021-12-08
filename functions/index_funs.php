@@ -64,3 +64,13 @@ function addInfoCustomer($name, $new_address, $phone_number, $account, $connect)
     $select = "INSERT INTO `khachhang`(`makhachhang`, `tenkhachhang`, `diachi`, `sdt`, `taikhoan`) VALUES ('','$name','$new_address','$phone_number','$account')";
     return mysqli_query($connect, $select);
 }
+function selectAddress($username, $connect)
+{
+    $select = "SELECT khachhang.* FROM khachhang WHERE khachhang.taikhoan = '$username' LIMIT 1";
+    return mysqli_query($connect, $select);
+}
+function selectAddressAll($connect)
+{
+    $select = "SELECT khachhang.* FROM khachhang";
+    return mysqli_query($connect, $select);
+}

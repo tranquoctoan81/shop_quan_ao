@@ -98,3 +98,14 @@
                 }
                             ?>
 </div>
+<style>
+.account_content .login_wrapper .option_login {
+    border: none !important;
+}
+
+body {
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    font-family: 'Roboto', sans-serif;
+}
+</style>

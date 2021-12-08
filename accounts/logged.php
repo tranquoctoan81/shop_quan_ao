@@ -72,6 +72,12 @@ option_function_item.forEach(option_item => {
 });
 </script>
 <style>
+body {
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    font-family: 'Roboto', sans-serif;
+}
+
 #header_acc {
     display: flex;
     align-items: center;
@@ -111,7 +117,7 @@ option_function_item.forEach(option_item => {
     display: block;
     padding: 1rem 3rem;
     text-decoration: none;
-    color: #999;
+    color: #000;
     font-weight: bold;
     font-size: 1.3rem;
     border-top: .05rem solid #888;
@@ -120,7 +126,7 @@ option_function_item.forEach(option_item => {
 
 .option_function a.active,
 .option_function a:hover {
-    color: #000;
+    color: #eee;
 }
 
 

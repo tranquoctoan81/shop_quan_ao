@@ -71,7 +71,7 @@
                 </div>
                 <div class="cart_buy">
                     <a href="http://localhost/shop_quan_ao/accounts/accounts.php?redirect_account=addToCart">XEM GIỎ HÀNG</a>
-                    <a href="">THANH TOÁN</a>
+                    <a href="./category/order_now.php">THANH TOÁN</a>
                 </div>
             </div>
                 ';
@@ -152,6 +152,7 @@
 const dropdown_cart_right = document.querySelector('.dropdown_cart_right');
 const iconClose = document.querySelector('.icon_close_dropdown_right');
 const cart_icon = document.querySelector('.cart_icon');
+const header = document.getElementById('header');
 cart_icon.onclick = () => {
     dropdown_cart_right.classList.add('active')
 }
@@ -160,9 +161,14 @@ iconClose.onclick = () => {
 }
 window.onscroll = () => {
     dropdown_cart_right.classList.remove('active')
+    // header.style.position = 'sticky';
 }
 </script>
 <style>
+body {
+    overflow-x: hidden;
+}
+
 .cart_icon {
     position: relative;
 }

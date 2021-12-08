@@ -20,7 +20,6 @@
     <input required type="text" name="phone_number" id="phone_number">
     <div class="submit_form">
         <input class="onSubmitLogin" name="add_address" type="submit" value="Lưu">
-        <a href=""></a>
     </div>
 </form>
 

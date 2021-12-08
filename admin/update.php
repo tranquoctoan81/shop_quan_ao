@@ -1,67 +1,7 @@
 <?php
 require '../model/connect.php';
 require '../functions/admin_funs.php';
-if (isset($_GET['handle_product_id'])) {
-    $idPro = $_GET['handle_product_id'];
-    if (isset($_GET['delete_pro'])) {
-        $deleteProduct = deleteProduct($idPro, $connect);
-        if ($deleteProduct) {
-?><script>
-alert("Xóa thành công")
-</script><?php
-                    } else {
-                        ?><script>
-alert("Xóa không thành công")
-</script><?php
-                    }
-                } elseif (isset($_GET['update_pro'])) {
-                    echo 'cn';
-                }
-            }
-
-            // news start
-            if (isset($_GET['delete_news'])) {
-                $idNew = $_GET['delete_news'];
-                $deleteNews = deleteNews($idNew, $connect);
-                if ($deleteNews) {
-                        ?><script>
-alert("Xóa thành công")
-</script><?php
-                } else {
-                    ?><script>
-alert("Xóa không thành công")
-</script><?php
-                }
-            }
-
-
-            if (isset($_GET['handle_product_id'])) {
-                $idPro = $_GET['handle_product_id'];
-                if (isset($_GET['delete_pro'])) {
-                    $deleteProduct = deleteProduct($idPro, $connect);
-                    if ($deleteProduct) {
-                    ?><script>
-alert("Xóa thành công")
-</script><?php
-                    } else {
-                        ?><script>
-alert("Xóa không thành công")
-</script><?php
-                    }
-                } elseif (isset($_GET['update_pro'])) {
-                    echo 'cn';
-                }
-            }
-
-            // news end
-            session_start();
-            $user =  $_SESSION['username'];
-            $resultAccount = login($user, $connect);
-            $id = mysqli_fetch_array($resultAccount);
-            if ($id['quyen'] == 0) {
-                header('Location: ../index.php');
-            }
-                        ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,8 +29,8 @@ function showAllProduct()
     <td><?php echo $selectAllProduct['tenloai']; ?></td>
     <td><?php echo $selectAllProduct['tennhom']; ?></td>
     <td>
-        <a class="update_product"
-            href="./admin/update.php?handle_product_id=<?php echo $selectAllProduct['masanpham']; ?>&update_pro">Sửa</a>
+        <a class="update_product" data-index="<?php echo $selectAllProduct['masanpham']; ?>"
+            href="<?php echo $_SERVER['PHP_SELF']; ?>?handle_product_id=<?php echo $selectAllProduct['masanpham']; ?>&update_pro">Sửa</a>
         <a
             href="<?php echo $_SERVER['PHP_SELF']; ?>?handle_product_id=<?php echo $selectAllProduct['masanpham']; ?>&delete_pro">Xóa</a>
     </td>
@@ -114,26 +54,9 @@ function showAllNews()
         <textarea name="" id="" cols="45" rows="5"><?php echo $listNews['chitiettin']; ?></textarea>
     </td>
     <td>
-        <a href="./admin/update.php?update_news=<?php echo $listNews['matin']; ?>">Sửa</a>
+        <a href="<?php echo $_SERVER['PHP_SELF']; ?>?update_news=<?php echo $listNews['matin']; ?>">Sửa</a>
         <a href="<?php echo $_SERVER['PHP_SELF']; ?>?delete_news=<?php echo $listNews['matin']; ?>">Xóa</a>
     </td>
-</tr>
-<?php
-        $index++;
-    }
-}
-function showAccount()
-{
-    require '../model/connect.php';
-    $i = selectAccount($connect);
-    while ($a = mysqli_fetch_array($i)) {
-        static $index = 1;
-    ?>
-<tr>
-    <td><?php echo $index ?></td>
-    <td><?php echo $a['taikhoan']; ?></td>
-    <td><textarea name="" id="" cols="60" rows="2"><?php echo $a['matkhau']; ?></textarea></td>
-    <td colspan="2"><?php echo $a['quyen']; ?></td>
 </tr>
 <?php
         $index++;
@@ -149,12 +72,6 @@ function showAccount()
     </div>
     <div class="admin-container">
         <h1 class="admin-title">Trang chủ admin</h1>
-
-        <!-- <h2>Thêm sản phẩm</h2>
-        <?php require_once './classify/addProduct.php'; ?>
-        <h2>Thêm tin tức</h2>
-        <?php require_once './classify/addNews.php'; ?> -->
-
         <div class="product_manager">
             <h1>Danh sách sản phẩm</h1>
             <div class="tbl-header">
@@ -180,6 +97,73 @@ function showAccount()
                 </table>
             </div>
         </div>
+        <?php
+        function showInfoProduct()
+        {
+            require '../model/connect.php';
+            if (isset($_GET['update_pro'])) {
+                $id = $_GET['handle_product_id'];
+                $resultProduct = selectProductsItems($id, $connect);
+                $pro = mysqli_fetch_array($resultProduct);
+                echo '
+                <form method="POST" action="">
+                <a href="./admin/admin.php" class="iconClose">
+                    <i class="fas fa-times"></i>
+                </a>
+                <h4>Cập nhật sản phẩm</h4>
+                <label for="name">Sản phẩm</label>
+                <input value="' . $pro['tensanpham'] . '" name="name" type="text" id="name">
+                <label for="price">Giá</label>
+                <input value="' . $pro['gia'] . '" name="price" type="text" id="price">
+                <label for="color">Màu</label>
+                <input value="' . $pro['mausac'] . '" name="color" type="text" id="color">
+                <label for="detail">Chi tiết</label>
+                <textarea name="detail" id="detail">' . $pro['mota'] . '</textarea>
+                <input name="handleFormUpdate" type="submit" value="Cập nhật">
+                </form>
+                ';
+            } elseif (isset($_GET['update_news'])) {
+                $idNews = $_GET['update_news'];
+                $resultNews = selectIdNewss($idNews, $connect);
+                $news = mysqli_fetch_array($resultNews);
+                echo '
+                <form method="POST" action="">
+                <a href="./admin/admin.php" class="iconClose">
+                    <i class="fas fa-times"></i>
+                </a>
+                <h4>Cập nhật tin tức</h4>
+                <label for="name">Tiêu đề</label>
+                <input value="' . $news['tieude'] . '" name="title" type="text" id="name">
+                <label for="detail">Chi tiết</label>
+                <textarea name="detail" id="detail">' . $news['chitiettin'] . '</textarea>
+                <input name="handleFormUpdateNews" type="submit" value="Cập nhật">
+                </form>
+                ';
+            }
+        }
+        ?>
+        <div class="form_update_product">
+            <?php showInfoProduct(); ?>
+            <?php
+            if (isset($_POST['handleFormUpdate'])) {
+                $id = $_GET['handle_product_id'];
+                $name = $_POST['name'];
+                $price = $_POST['price'];
+                $color = $_POST['color'];
+                $detail = $_POST['detail'];
+                $check = updateProduct($id, $name, $price, $color, $detail, $connect);
+                if ($check) {
+            ?><script>
+            alert('Cập nhật thành công')
+            </script><?php
+                            } else {
+                                ?><script>
+            alert('Cập nhật thất bại')
+            </script><?php
+                            }
+                        }
+                                ?>
+        </div>
         <div style="margin:6rem 0" class="news_manager">
             <h1>Danh sách tin tức</h1>
             <div class="tbl-header">
@@ -199,54 +183,114 @@ function showAccount()
                     <tbody>
                         <?php showAllNews(); ?>
                     </tbody>
-                </table>
-            </div>
-        </div>
-        <div style="margin:6rem 0" class="news_manager">
-            <h1>Danh sách tài khoản</h1>
-            <div class="tbl-header">
-                <table cellpadding="0" cellspacing="0" border="0">
-                    <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th>Tài khoản</th>
-                            <th>Mật khẩu</th>
-                            <th colspan="2">Quyền</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-            <div class="tbl-content">
-                <table cellpadding="0" cellspacing="0" border="0">
-                    <tbody>
-                        <?php showAccount(); ?>
-                    </tbody>
+                    <?php
+                    if (isset($_POST['handleFormUpdateNews'])) {
+                        $idNews = $_GET['update_news'];
+                        $title = $_POST['title'];
+                        $detailNews = $_POST['detail'];
+                        $checkBo = updateNews($idNews, $title, $detailNews, $connect);
+                        if ($checkBo) {
+                    ?><script>
+                    alert('Cập nhật thành công')
+                    </script><?php
+                                    } else {
+                                        ?><script>
+                    alert('Cập nhật thất bại')
+                    </script><?php
+                                    }
+                                }
+                                        ?>
                 </table>
             </div>
         </div>
     </div>
 </body>
 <script>
-// const iconClose = document.querySelector('.iconClose')
-// const form_update_product = document.querySelector('.form_update_product');
-// const update_product = document.querySelectorAll('.update_product');
-// const formHidden = document.getElementById('formHidden')
-// update_product.forEach(item => {
-//     item.onclick = function(e) {
-//         // e.preventDefault();
-//         const id = item.getAttribute('data-index')
-//         formHidden.action = ` ?update_product_id=${id}`
-//         form_update_product.classList.add('active')
-//     }
-// })
-// iconClose.onclick = () => {
-//     form_update_product.classList.remove('active')
-// }
+const iconClose = document.querySelector('.iconClose')
+const form_update_product = document.querySelector('.form_update_product');
+console.log(iconClose);
+iconClose.onclick = () => {
+    form_update_product.classList.add('active')
+}
 </script>
 
 </html>
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+
+.form_update_product {
+    position: fixed;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease-in-out;
+}
+
+.form_update_product.active {
+    top: -100%;
+}
+
+.form_update_product form {
+    position: relative;
+    padding: 2rem 2rem;
+    width: 20%;
+    height: 50%;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+}
+
+.iconClose {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.iconClose:hover {
+    opacity: .6;
+}
+
+.form_update_product form h4 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: -1rem;
+}
+
+.form_update_product form input {
+    margin-bottom: 1rem;
+    padding: .5rem;
+    outline: none;
+    border: none;
+}
+
+.form_update_product form textarea {
+    padding: 1rem 1rem 2rem;
+}
+
+.form_update_product form label {
+    padding: .3rem 0;
+}
+
+.form_update_product form input:last-child {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    padding: .7rem;
+    cursor: pointer;
+    background: -webkit-linear-gradient(left, #6CF0EE, #B2EDEC);
+    background: linear-gradient(to right, #6CF0EE, #B2EDEC);
+}
+
+.form_update_product form input:last-child:hover {
+    opacity: .5;
+}
 
 .admin-container {
     width: 1200px;

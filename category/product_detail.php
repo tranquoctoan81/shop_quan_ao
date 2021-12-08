@@ -81,10 +81,28 @@ if (isset($_GET['idProduct'])) {
                 </div>
                 <div class="quantity_size">
                     <div class="size">
-                        <p>Kích cỡ</p>
-                        <a class="size_select active" name="M" href="">M</a>
-                        <a class="size_select" name="L" href="">L</a>
-                        <a class="size_select" name="XL" href="">XL</a>
+
+                        <?php
+                        $size = selectProductsItem($id, $connect);
+                        $arr = mysqli_fetch_array($size);
+                        if ($arr['maloai'] == 18) {
+                            echo '
+                            <p>Cỡ</p>
+                            <span class="size_span active">39</span>
+                            <span class="size_span">40</span>
+                            <span class="size_span">41</span>
+                            <span class="size_span">42</span>
+                            <span class="size_span">43</span>
+                            <span class="size_span">44</span>
+                            ';
+                        } else {
+                            echo '
+                            <p>Kích cỡ</p>
+                            <a class="size_select active" name="M" href="">M</a>
+                            <a class="size_select" name="L" href="">L</a>
+                            <a class="size_select" name="XL" href="">XL</a>';
+                        }
+                        ?>
                     </div>
                     <div class="quantity">
                         <p>Số lượng</p>
@@ -98,7 +116,7 @@ if (isset($_GET['idProduct'])) {
                         <input type="hidden" value="<?php echo $id; ?>" name="id_product">
                         <input type="hidden" value="<?php echo $selectProductItem['gia']; ?>" name="price">
                         <input type="hidden" value="<?php echo $selectProductItem['mausac']; ?>" name="color">
-                        <input value="Thêm vào giỏ hàng" class="onSubmitFormBy" type="submit" name="addToCart">
+                        <input value="Thêm vào giỏ hàng" class="onSubmitFormBy active" type="submit" name="addToCart">
                     </div>
                     <div class="byNow">
                         <input value="Mua ngay" class="onSubmitFormBy c" type="submit" name="orderByNow">
@@ -145,6 +163,17 @@ if (isset($_POST['addToCart'])) {
 
 </html>
 <script>
+const onSubmitFormBy = document.querySelector('.onSubmitFormBy.active')
+onSubmitFormBy.onclick = () => {
+    alert('Thêm vào giỏ hành thành công!')
+}
+const size_span = document.querySelectorAll('.size_span');
+size_span.forEach(item => {
+    item.onclick = function() {
+        document.querySelector('.size_span.active').classList.remove('active');
+        this.classList.add('active');
+    }
+})
 const size_select = document.querySelectorAll('.size_select');
 size_select.forEach(size => {
     size.onclick = function(e) {
@@ -163,6 +192,16 @@ select_image.forEach(image => {
 });
 </script>
 <style>
+body {
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    font-family: 'Roboto', sans-serif;
+}
+
+.header_option .logo a {
+    color: #eee;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -265,6 +304,18 @@ select_image.forEach(image => {
 
 .quantity_size .size {
     width: 49%;
+    align-items: center;
+}
+
+.quantity_size .size span {
+    font-size: 1.3rem;
+    border: .1rem solid #999;
+    display: inline-block;
+    height: 2.3rem;
+    border-radius: 50%;
+    padding: .3rem;
+    margin-left: .7rem;
+    cursor: pointer;
 }
 
 .quantity_size .size a {
@@ -283,6 +334,10 @@ select_image.forEach(image => {
     margin-top: 5px;
     position: relative;
     text-decoration: none;
+}
+
+.quantity_size .size .size_span.active {
+    border: .1rem solid red;
 }
 
 .select_image.active::before,
@@ -329,18 +384,17 @@ select_image.forEach(image => {
     margin-right: 2%;
     background: #fff;
     color: red;
-    border: .2rem solid red;
     text-transform: uppercase;
     width: 100%;
     height: 2.7rem;
     font-weight: 500;
     cursor: pointer;
     font-size: 1.1rem;
+    outline: none;
 }
 
 
 .submit_form .onSubmitFormBy.c {
-    border: .2rem solid black;
     color: black;
 }
 

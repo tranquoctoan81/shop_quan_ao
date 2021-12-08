@@ -88,6 +88,12 @@ if (isset($_GET['nameProduct'])) {
     box-sizing: border-box;
 }
 
+body {
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    font-family: 'Roboto', sans-serif;
+}
+
 .product-detail .product-name {
     color: #000;
 }
