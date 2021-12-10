@@ -88,8 +88,12 @@ function checkAddress()
         echo '2';
     }
 }
+function checkSubmit()
+{
+    echo '123';
+}
 ?>
-<div class="container">
+<form class="container">
     <div id="header_acc">
         <a style="cursor: pointer;" href="../index.php">Trang chủ</a>
         <p class="space">/</p>
@@ -112,7 +116,7 @@ function checkAddress()
                     <?php showCart(); ?>
                 </tbody>
             </table>
-            <input type="submit" class="order_now_button" value="Đặt mua">
+            <input type="submit" onclick="<?php checkSubmit(); ?>" class="order_now_button" value="Đặt mua">
         </div>
         <div class="list_address">
             <div class="list_address_option">
@@ -143,35 +147,7 @@ function checkAddress()
             </div>
         </div>
     </div>
-</div>
-<!-- <div class="box_address_hidden">
-    <h3>Chọn địa chỉ mặc định</h3>
-    <div class="address_item">
-        <h5>Trần quốc Toản
-            <input name="id" value="1" type="checkbox" checked>
-        </h5>
-        <p>Phuket - Krung Thep Mahanakhon Amon Rattanakosin Mahinthara Ayuthaya Mahadilok Phop Noppharat Ratchathani
-            Burirom Udomratchaniwet Mahasathan Amon Piman Awatan Sathit Sakkathattiya Witsanukam Prasit</p>
-        <p>Điện Thoại: 123465798</p>
-    </div>
-    <div class="address_item">
-        <h5>Trần quốc Toản
-            <input name="id" value="2" type="checkbox">
-        </h5>
-        <p>Phuket - Krung Thep Mahanakhon Amon Rattanakosin Mahinthara Ayuthaya Mahadilok Phop Noppharat Ratchathani
-            Burirom Udomratchaniwet Mahasathan Amon Piman Awatan Sathit Sakkathattiya Witsanukam Prasit</p>
-        <p>Điện Thoại: 123465798</p>
-    </div>
-    <div class="address_item">
-        <h5>Trần quốc Toản
-            <input name="id" value="3" type="checkbox">
-        </h5>
-        <p>Phuket - Krung Thep Mahanakhon Amon Rattanakosin Mahinthara Ayuthaya Mahadilok Phop Noppharat Ratchathani
-            Burirom Udomratchaniwet Mahasathan Amon Piman Awatan Sathit Sakkathattiya Witsanukam Prasit</p>
-        <p>Điện Thoại: 123465798</p>
-    </div>
-
-</div> -->
+</form>
 <style>
 body {
     background: -webkit-linear-gradient(left, #25c481, #25b7c4);

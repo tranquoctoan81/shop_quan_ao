@@ -31,7 +31,7 @@ function login($account, $connect)
 }
 function selectAllProducts($connect)
 {
-    $sql = "SELECT sanpham.*, loaisanpham.tenloai as tenloai, nhomsanpham.tennhom as tennhom FROM sanpham LEFT JOIN loaisanpham ON loaisanpham.maloai = sanpham.maloai LEFT JOIN nhomsanpham ON nhomsanpham.manhom = loaisanpham.manhom ORDER BY sanpham.create_update ASC";
+    $sql = "SELECT sanpham.*, loaisanpham.tenloai as tenloai, nhomsanpham.tennhom as tennhom FROM sanpham LEFT JOIN loaisanpham ON loaisanpham.maloai = sanpham.maloai LEFT JOIN nhomsanpham ON nhomsanpham.manhom = loaisanpham.manhom ORDER BY sanpham.create_update DESC";
     return mysqli_query($connect, $sql);
 }
 function selectNewss($connect)

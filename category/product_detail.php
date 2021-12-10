@@ -66,18 +66,11 @@ if (isset($_GET['idProduct'])) {
                 <p class="guide_size">Hướng dẫn chọn size</p>
                 <p class="color">Màu sắc</p>
                 <div class="image_detail_wrapper">
-                    <div name="image" class="image image_detail select_image active">
-                        <img src="https://bucket.nhanh.vn/store/7136/ps/20211119/19112021051113_ao_thun_nu__W1ATN11104SOSHT_toto_shop___1_.jpg"
-                            alt="">
-                    </div>
-                    <div class="image image_detail select_image">
-                        <img src="https://bucket.nhanh.vn/store/7136/ps/20211119/19112021051113_ao_thun_nu__W1ATN11104SOSHT_toto_shop___1_.jpg"
-                            alt="">
-                    </div>
-                    <div class="image image_detail select_image">
-                        <img src="https://bucket.nhanh.vn/store/7136/ps/20211119/19112021051113_ao_thun_nu__W1ATN11104SOSHT_toto_shop___1_.jpg"
-                            alt="">
-                    </div>
+                    <div class="box_color active"></div>
+                    <div class="box_color"></div>
+                    <div class="box_color"></div>
+                    <div class="box_color"></div>
+                    <div class="box_color"></div>
                 </div>
                 <div class="quantity_size">
                     <div class="size">
@@ -190,6 +183,13 @@ select_image.forEach(image => {
         this.classList.add('active');
     }
 });
+const box_color = document.querySelectorAll('.box_color');
+box_color.forEach(box => {
+    box.onclick = function(e) {
+        document.querySelector('.box_color.active').classList.remove('active');
+        this.classList.add('active');
+    }
+});
 </script>
 <style>
 body {
@@ -206,6 +206,36 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.box_color {
+    width: 2rem;
+    height: 2rem;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 1.2rem .5rem;
+    cursor: pointer;
+}
+
+.box_color.active {
+    border: 5px solid #eee;
+}
+
+.box_color:nth-child(2) {
+    background-color: blue;
+}
+
+.box_color:nth-child(3) {
+    background-color: red;
+}
+
+.box_color:nth-child(4) {
+    background-color: #FFCC66;
+}
+
+.box_color:nth-child(5) {
+    background-color: #000;
 }
 
 .product_detail_wrapper {

@@ -10,7 +10,8 @@
                 $arrNews = selectAllNews($connect);
                 while ($selectItemNews = mysqli_fetch_array($arrNews)) {
                 ?>
-                <a class="news_item">
+                <a href="<?php echo $_SERVER['PHP_SELF']; ?>?news_id=<?php echo $selectItemNews['matin']; ?>"
+                    class="news_item">
                     <div class="image">
                         <img class="active"
                             src="../admin/public/images_news/<?php echo $selectItemNews['anhtintuc']; ?>">
@@ -51,6 +52,11 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
 }
 
 h3 {

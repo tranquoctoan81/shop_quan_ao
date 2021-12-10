@@ -133,7 +133,8 @@ function showAccount()
     <td><?php echo $index ?></td>
     <td><?php echo $a['taikhoan']; ?></td>
     <td><textarea name="" id="" cols="60" rows="2"><?php echo $a['matkhau']; ?></textarea></td>
-    <td colspan="2"><?php echo $a['quyen']; ?></td>
+    <td colspan="2"><?php echo $a['quyen']; ?>
+    </td>
 </tr>
 <?php
         $index++;
@@ -149,12 +150,6 @@ function showAccount()
     </div>
     <div class="admin-container">
         <h1 class="admin-title">Trang chủ admin</h1>
-
-        <!-- <h2>Thêm sản phẩm</h2>
-        <?php require_once './classify/addProduct.php'; ?>
-        <h2>Thêm tin tức</h2>
-        <?php require_once './classify/addNews.php'; ?> -->
-
         <div class="product_manager">
             <h1>Danh sách sản phẩm</h1>
             <div class="tbl-header">
@@ -179,6 +174,11 @@ function showAccount()
                     </tbody>
                 </table>
             </div>
+            <a href="" class="btn_add_product_handle">Thêm sản phẩm</a>
+        </div>
+        <div class="addProHidden">
+            <h2>Thêm sản phẩm</h2>
+            <?php require './classify/addProduct.php'; ?>
         </div>
         <div style="margin:6rem 0" class="news_manager">
             <h1>Danh sách tin tức</h1>
@@ -201,6 +201,11 @@ function showAccount()
                     </tbody>
                 </table>
             </div>
+            <a href="" class="btn_add_news_handle">Thêm tin tức</a>
+        </div>
+        <div class="addNewsHidden">
+            <h2>Thêm tin tức</h2>
+            <?php require './classify/addNews.php'; ?>
         </div>
         <div style="margin:6rem 0" class="news_manager">
             <h1>Danh sách tài khoản</h1>
@@ -242,21 +247,66 @@ function showAccount()
 // iconClose.onclick = () => {
 //     form_update_product.classList.remove('active')
 // }
+const btn_add_product_handle = document.querySelector('.btn_add_product_handle')
+const btn_add_news_handle = document.querySelector('.btn_add_news_handle')
+const addProHidden = document.querySelector('.addProHidden')
+const addNewsHidden = document.querySelector('.addNewsHidden')
+btn_add_product_handle.onclick = (e) => {
+    e.preventDefault();
+    addProHidden.classList.toggle('none')
+}
+btn_add_news_handle.onclick = (e) => {
+    e.preventDefault();
+    addNewsHidden.classList.toggle('none')
+}
 </script>
 
 </html>
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 
+.none {
+    display: block !important;
+}
+
+.addProHidden,
+.addNewsHidden {
+    display: none;
+}
+
 .admin-container {
     width: 1200px;
     margin: 0 auto;
+}
+
+#addNews {
+    margin-top: 5rem;
+}
+
+.btn_add_news_handle,
+.btn_add_product_handle {
+    color: #EFF8FE;
+    font-weight: 400;
+    text-decoration: none;
+    padding: .5rem 1rem;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin-top: 1rem;
+    border-radius: 1rem;
+    background: -webkit-linear-gradient(left, #38E2FC, #35F2D9);
+    background: linear-gradient(to right, #38E2FC, #35F2D9);
+    cursor: pointer;
+}
+
+.btn_add_product_handle:hover {
+    opacity: .8;
 }
 
 .admin-title {
     display: block;
     text-align: center;
     font-size: 3rem;
+    margin-top: 4rem;
 }
 
 table {

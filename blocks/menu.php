@@ -1,4 +1,4 @@
-<div id="header">
+<div id="header" class="header">
     <div class="header_option">
         <div class="logo">
             <a href="http://localhost/shop_quan_ao/">SHOPQUANAO</a>
@@ -20,7 +20,9 @@
             session_start();
             if (isset($_SESSION['username'])) {
                 echo "<p class='user_name'>{$_SESSION['username']}</p>";
-                $quantity_order = count($_SESSION['cart']);
+                if (isset(($_SESSION['cart']))) {
+                    $quantity_order = count($_SESSION['cart']);
+                }
             };
             ?>
             <div class="wrap_icon_item search_icon">
@@ -152,7 +154,7 @@
 const dropdown_cart_right = document.querySelector('.dropdown_cart_right');
 const iconClose = document.querySelector('.icon_close_dropdown_right');
 const cart_icon = document.querySelector('.cart_icon');
-const header = document.getElementById('header');
+console.log(header)
 cart_icon.onclick = () => {
     dropdown_cart_right.classList.add('active')
 }
@@ -167,6 +169,15 @@ window.onscroll = () => {
 <style>
 body {
     overflow-x: hidden;
+}
+
+.header.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 999999;
 }
 
 .cart_icon {

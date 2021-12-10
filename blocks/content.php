@@ -21,7 +21,8 @@
             ?>
             <a href="category/product_detail.php?idProduct=<?php echo $selectHotProduct['masanpham']; ?>"
                 class="image_hot_product">
-                <img src="./admin/public/images_shirt/<?php echo $selectHotProduct['img']; ?>" alt="">
+                <div class="image_pro"><img src="./admin/public/images_shirt/<?php echo $selectHotProduct['img']; ?>"
+                        alt=""></div>
                 <div class="product-detail">
                     <div class="product-name">
                         <?php echo $selectHotProduct['tensanpham']; ?>
@@ -45,7 +46,8 @@
             ?>
             <a href="category/product_detail.php?idProduct=<?php echo $selectNewProduct['masanpham']; ?>"
                 class="image_hot_product">
-                <img src="./admin/public/images_shirt/<?php echo $selectNewProduct['img']; ?>" alt="">
+                <div class="image_pro"><img src="./admin/public/images_shirt/<?php echo $selectNewProduct['img']; ?>"
+                        alt=""></div>
                 <div class="product-detail">
                     <div class="product-name">
                         <?php echo $selectNewProduct['tensanpham']; ?>
@@ -87,5 +89,28 @@
 <style>
 .product-name {
     color: #000;
+}
+
+.image_hot_product .product-detail {
+    transition: all .5s ease-in-out;
+}
+
+.image_hot_product .image_pro {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.image_hot_product .image_pro img {
+    transition: all 1s ease-out;
+}
+
+.image_hot_product:hover .image_pro img {
+    transform: scale(.9);
+}
+
+.image_hot_product:hover .product-detail {
+    bottom: 0;
+    opacity: 1;
 }
 </style>
