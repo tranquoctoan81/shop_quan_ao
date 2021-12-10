@@ -14,13 +14,27 @@ require '../functions/admin_funs.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <?php
-function showAllProduct()
-{
-    require '../model/connect.php';
-    $selectAllProducts = selectAllProducts($connect);
-    while ($selectAllProduct = mysqli_fetch_array($selectAllProducts)) {
-        static $index = 1;
-?>
+if (isset($_POST['handleFormUpdateAcc'])) {
+    $user = $_POST['user'];
+    $quyen = $_POST['quyen'];
+    $checkAccQ = updateAcc($user, $quyen, $connect);
+    if ($checkAccQ) {
+?><script>
+alert('Cập nhật thành công')
+</script><?php
+                } else {
+                    ?><script>
+alert('Cập nhật thất bại')
+</script><?php
+                }
+            }
+            function showAllProduct()
+            {
+                require '../model/connect.php';
+                $selectAllProducts = selectAllProducts($connect);
+                while ($selectAllProduct = mysqli_fetch_array($selectAllProducts)) {
+                    static $index = 1;
+                    ?>
 <tr>
     <td><?php echo $index; ?></td>
     <td><?php echo $selectAllProduct['tensanpham']; ?></td>
@@ -36,16 +50,16 @@ function showAllProduct()
     </td>
 </tr>
 <?php
-        $index++;
-    }
-}
+                    $index++;
+                }
+            }
 
-function showAllNews()
-{
-    require '../model/connect.php';
-    $selectNews = selectNewss($connect);
-    while ($listNews = mysqli_fetch_array($selectNews)) {
-        static $index = 1;
+            function showAllNews()
+            {
+                require '../model/connect.php';
+                $selectNews = selectNewss($connect);
+                while ($listNews = mysqli_fetch_array($selectNews)) {
+                    static $index = 1;
     ?>
 <tr>
     <td><?php echo $index; ?></td>
@@ -59,9 +73,9 @@ function showAllNews()
     </td>
 </tr>
 <?php
-        $index++;
-    }
-}
+                    $index++;
+                }
+            }
 ?>
 
 <body>
@@ -137,6 +151,24 @@ function showAllNews()
                 <label for="detail">Chi tiết</label>
                 <textarea name="detail" id="detail">' . $news['chitiettin'] . '</textarea>
                 <input name="handleFormUpdateNews" type="submit" value="Cập nhật">
+                </form>
+                ';
+            } elseif (isset($_GET['updateAcc'])) {
+                $userE = $_GET['user'];
+                $selectAcc = selectAcc($userE, $connect);
+                $resultAcc = mysqli_fetch_array($selectAcc);
+                echo '
+                <form method="POST" action="">
+                <a href="./admin/admin.php" class="iconClose">
+                    <i class="fas fa-times"></i>
+                </a>
+                <h4>Cập nhật quyền cho tài khoản</h4>
+                <label for="name">Tên tài khoản</label>
+                <input value="' . $resultAcc['taikhoan'] . '" type="text" id="name">
+                <input value="' . $resultAcc['taikhoan'] . '" name="user" type="hidden" id="name">
+                <label for="quyen">Quyền</label>
+                <input value="' . $resultAcc['quyen'] . '" name="quyen" type="text" id="quyen">
+                <input name="handleFormUpdateAcc" type="submit" value="Cập nhật">
                 </form>
                 ';
             }

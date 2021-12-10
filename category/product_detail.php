@@ -115,6 +115,9 @@ if (isset($_GET['idProduct'])) {
                         <input value="Mua ngay" class="onSubmitFormBy c" type="submit" name="orderByNow">
                     </div>
                 </div>
+                <div class="product_detail1">
+                    <p><?php echo $selectProductItem['mota']; ?></p>
+                </div>
                 <div class="detail_service">
                     <p><strong>»&nbsp;BẢO HÀNH SẢN PHẨM&nbsp;90 NGÀY</strong></p>
                     <p><strong>»&nbsp;ĐỔI HÀNG TRONG VÒNG&nbsp;90 NGÀY</strong></p>
@@ -200,6 +203,14 @@ body {
 
 .header_option .logo a {
     color: #eee;
+}
+
+.product_detail1 p {
+    display: inline-block;
+    width: 20rem;
+    font-size: 1.2rem;
+    color: #000;
+    margin-top: 2rem;
 }
 
 * {

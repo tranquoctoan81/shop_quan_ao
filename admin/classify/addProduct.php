@@ -156,7 +156,6 @@ div {
 .add_shirt {
     padding: 5px;
     background-color: #FFFFFF;
-    border: 100px;
     position: absolute;
     bottom: 0px;
     border-radius: 10px;

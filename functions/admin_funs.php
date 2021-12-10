@@ -75,3 +75,13 @@ function selectAccount($connect)
     $select = "SELECT taikhoan.* FROM taikhoan ORDER BY taikhoan.create_date DESC";
     return mysqli_query($connect, $select);
 }
+function selectAcc($userE, $connect)
+{
+    $sql = "SELECT taikhoan.* FROM taikhoan WHERE taikhoan.taikhoan = '$userE'";
+    return mysqli_query($connect, $sql);
+}
+function updateAcc($user, $quyen, $connect)
+{
+    $sql = "UPDATE `taikhoan` SET `quyen` = {$quyen} WHERE `taikhoan`.`taikhoan` = '$user'";
+    return mysqli_query($connect, $sql);
+}

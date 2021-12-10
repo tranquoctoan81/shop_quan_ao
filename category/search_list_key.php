@@ -153,7 +153,7 @@ body {
 
 .hot_product_container {
     --spacing: 2rem;
-    --columns: 4;
+    --columns: 5;
     display: flex;
     flex-wrap: wrap;
     margin-left: calc(-1 * var(--spacing));

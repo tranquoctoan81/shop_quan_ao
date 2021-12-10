@@ -132,9 +132,10 @@ function showAccount()
 <tr>
     <td><?php echo $index ?></td>
     <td><?php echo $a['taikhoan']; ?></td>
-    <td><textarea name="" id="" cols="60" rows="2"><?php echo $a['matkhau']; ?></textarea></td>
-    <td colspan="2"><?php echo $a['quyen']; ?>
-    </td>
+    <td><textarea name="" id="" cols="40" rows="2"><?php echo $a['matkhau']; ?></textarea></td>
+    <td><?php echo $a['quyen']; ?></td>
+    <td><a href="./admin/update.php?user=<?php echo $a['taikhoan']; ?>&updateAcc=<?php echo $a['quyen']; ?>">Sửa
+            quyền</a></td>
 </tr>
 <?php
         $index++;
@@ -216,7 +217,8 @@ function showAccount()
                             <th>STT</th>
                             <th>Tài khoản</th>
                             <th>Mật khẩu</th>
-                            <th colspan="2">Quyền</th>
+                            <th>Quyền</th>
+                            <th>Phân quyền</th>
                         </tr>
                     </thead>
                 </table>

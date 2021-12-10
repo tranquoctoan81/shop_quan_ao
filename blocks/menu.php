@@ -154,7 +154,6 @@
 const dropdown_cart_right = document.querySelector('.dropdown_cart_right');
 const iconClose = document.querySelector('.icon_close_dropdown_right');
 const cart_icon = document.querySelector('.cart_icon');
-console.log(header)
 cart_icon.onclick = () => {
     dropdown_cart_right.classList.add('active')
 }
