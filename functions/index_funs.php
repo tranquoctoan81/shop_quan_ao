@@ -16,12 +16,14 @@ function selectHotProduct($connect)
 }
 function selectNewProduct($connect)
 {
-    $select = "SELECT sanpham.* FROM sanpham WHERE sanpham.maloai = 6 LIMIT 4";
+    // $select = "SELECT sanpham.* FROM sanpham WHERE sanpham.maloai = 6 LIMIT 4";
+    $select = "SELECT sanpham.* FROM sanpham ORDER BY sanpham.create_update DESC LIMIT 4";
     return mysqli_query($connect, $select);
 }
 function selectNews($connect)
 {
-    $select = "SELECT tintuc.* FROM tintuc LIMIT 3";
+    // $select = "SELECT tintuc.* FROM tintuc LIMIT 3";
+    $select = "SELECT tintuc.* FROM tintuc ORDER BY tintuc.create_date DESC LIMIT 3";
     return mysqli_query($connect, $select);
 }
 function selectAllNews($connect)

@@ -41,16 +41,19 @@
     <?php
     function showCart()
     {
-        if (count($_SESSION['cart']) === 0) {
-            echo '<h1 style="text-align:center">Bạn chưa thêm sản phẩm nào</h1>';
-        } elseif (isset($_SESSION['cart'])) {
-            if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
-                $session_cart = $_SESSION['cart'];
-                $sumAllProducts = 0;
-                foreach ($session_cart as $key) {
-                    $sum = ($key[3] * $key[4]);
-                    $sumAllProducts += $sum;
-                    echo '
+        if (isset($_SESSION['cart'])) {
+
+
+            if (count($_SESSION['cart']) === 0) {
+                echo '<h1 style="text-align:center">Bạn chưa thêm sản phẩm nào</h1>';
+            } elseif (isset($_SESSION['cart'])) {
+                if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
+                    $session_cart = $_SESSION['cart'];
+                    $sumAllProducts = 0;
+                    foreach ($session_cart as $key) {
+                        $sum = ($key[3] * $key[4]);
+                        $sumAllProducts += $sum;
+                        echo '
                     <div class="cart_content">
                     <div class="cart_content_detail">
                         <a href="">' . $key[0] . '</a>
@@ -64,8 +67,8 @@
                     </div>
                 </div>
                     ';
-                }
-                echo '
+                    }
+                    echo '
                 <div class="cart_footer">
                 <div class="cart_sum_price">
                     <h3>TỔNG TIỀN:</h3>
@@ -77,6 +80,7 @@
                 </div>
             </div>
                 ';
+                }
             }
         }
     }

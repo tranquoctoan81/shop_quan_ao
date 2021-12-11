@@ -33,7 +33,7 @@ require './functions/index_funs.php';
     var swiper = new Swiper(".slide-show-wraper", {
         centeredSlides: true,
         autoplay: {
-            delay: 5000,
+            delay: 4000,
             disableOnInteraction: false,
         }
     });

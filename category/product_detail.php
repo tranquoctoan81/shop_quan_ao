@@ -6,6 +6,9 @@ if (isset($_GET['idProduct'])) {
     $selectNameType = selectNameTypeItem2($id, $connect);
     $selectNameTypeItem = mysqli_fetch_array($selectNameType);
 }
+if (isset($_POST['orderByNow11'])) {
+    header('Location: order_now.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,7 +115,7 @@ if (isset($_GET['idProduct'])) {
                         <input value="Thêm vào giỏ hàng" class="onSubmitFormBy active" type="submit" name="addToCart">
                     </div>
                     <div class="byNow">
-                        <input value="Mua ngay" class="onSubmitFormBy c" type="submit" name="orderByNow">
+                        <input value="Mua ngay" class="onSubmitFormBy c" type="submit" name="orderByNow11">
                     </div>
                 </div>
                 <div class="product_detail1">
@@ -128,9 +131,6 @@ if (isset($_GET['idProduct'])) {
     </div>
 </body>
 <?php
-if (isset($_POST['orderByNow'])) {
-    echo 'dfsaaaaaaaaaaaaaaaaaaa';
-}
 if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 if (isset($_POST['addToCart'])) {
     $name = $_POST['product_name'];
